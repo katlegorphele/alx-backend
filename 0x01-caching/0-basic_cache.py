@@ -9,16 +9,14 @@ from dataclasses import dataclass
 
 class BasicCache(BaseCaching):
 
-    """ Base cache class
-    """
+    """Base cache class"""
 
     def __init__(self) -> None:
-        """ instance method
-        """
+        """instance method"""
         super().__init__()
 
     def put(self, key: str, item: Any) -> None:
-        """ put method to add item to the cache data storage
+        """put method to add item to the cache data storage
 
         Args:
             key (str): Item key
@@ -28,7 +26,7 @@ class BasicCache(BaseCaching):
             self.cache_data[key] = item
 
     def get(self, key: str) -> Any:
-        """ get item by key method for the cache storage
+        """get item by key method for the cache storage
 
         Args:
             key (str): item key

@@ -10,18 +10,17 @@ from typing import List, Any
 @dataclass
 class FIFOCache(BaseCaching):
 
-    """ Fifo cache class
-    """
+    """Fifo cache class"""
+
     # KEYS: List[str] = []
 
     def __post_init__(self):
-        """ instantiation method
-        """
+        """instantiation method"""
         super().__init__()
         self._keys = []  # just for the class dsa
 
     def put(self, key, item) -> None:
-        """ add to cache
+        """add to cache
 
         Args:
             key (str): key
@@ -31,8 +30,10 @@ class FIFOCache(BaseCaching):
         # if key in self.cache_data:
         #     self.cache_data[key] = item
         if key is not None and item is not None:
-            if len(self.cache_data) >= FIFOCache.MAX_ITEMS\
-                    and key not in self.cache_data:
+            if (
+                len(self.cache_data) >= FIFOCache.MAX_ITEMS
+                and key not in self.cache_data
+            ):
                 discarded = self.cache_data.pop(keys[0])
                 print(f"DISCARD: {keys[0]}")
                 keys.pop(0)
@@ -40,7 +41,7 @@ class FIFOCache(BaseCaching):
             self.cache_data[key] = item
 
     def get(self, key: str) -> Any:
-        """ get item by key method for the cache storage
+        """get item by key method for the cache storage
 
         Args:
             key (str): item key

@@ -10,17 +10,15 @@ from typing import List, Any
 @dataclass
 class LRUCache(BaseCaching):
 
-    """ LRU cache class
-    """
+    """LRU cache class"""
 
     def __post_init__(self):
-        """ instance method
-        """
+        """instance method"""
         super().__init__()
         self._keys = []  # Store keys in the order they were accessed
 
     def put(self, key, item) -> None:
-        """ add to cache
+        """add to cache
         Args:
             key (str): cache dict key
             item (any): key value
@@ -35,7 +33,7 @@ class LRUCache(BaseCaching):
             self.cache_data[key] = item
 
     def get(self, key: str) -> Any:
-        """ get item by key 
+        """get item by key
 
         Args:
             key (str): item key

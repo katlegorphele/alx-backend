@@ -10,25 +10,25 @@ from typing import List, Any
 @dataclass
 class MRUCache(BaseCaching):
 
-    """ LRU cache class
-    """
+    """LRU cache class"""
 
     def __post_init__(self):
-        """ instance method
-        """
+        """instance method"""
         super().__init__()
         self._keys = []  # Store keys in the order they were accessed
 
     def put(self, key, item) -> None:
-        """ add to cache method
+        """add to cache method
 
         Args:
             key (str): cache dict key
             item (any): key value
         """
         if key is not None and item is not None:
-            if len(self.cache_data) >= MRUCache.MAX_ITEMS \
-                    and key not in self.cache_data:
+            if (
+                len(self.cache_data) >= MRUCache.MAX_ITEMS
+                and key not in self.cache_data
+            ):
                 # Remove the most recently used item
                 discarded_key = self._keys.pop(-1)
                 self.cache_data.pop(discarded_key)
@@ -37,7 +37,7 @@ class MRUCache(BaseCaching):
             self.cache_data[key] = item
 
     def get(self, key: str) -> Any:
-        """ get item by key method for the cache storage
+        """get item by key method for the cache storage
 
         Args:
             key (str): item key

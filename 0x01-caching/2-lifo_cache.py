@@ -10,18 +10,17 @@ from typing import List, Any
 @dataclass
 class LIFOCache(BaseCaching):
 
-    """ Fifo cache class
-    """
+    """Fifo cache class"""
+
     # KEYS: List[str] = []
 
     def __post_init__(self):
-        """ instance method
-        """
+        """instance method"""
         super().__init__()
         self._keys = []  # just for the class dsa
 
     def put(self, key, item) -> None:
-        """ add to cache
+        """add to cache
 
         Args:
             key (str): cache dict key
@@ -29,8 +28,10 @@ class LIFOCache(BaseCaching):
         """
         keys = self._keys
         if key is not None and item is not None:
-            if len(self.cache_data) >= LIFOCache.MAX_ITEMS\
-                    and key not in self.cache_data:
+            if (
+                len(self.cache_data) >= LIFOCache.MAX_ITEMS
+                and key not in self.cache_data
+            ):
                 discarded = self.cache_data.pop(keys[-1])
                 print(f"DISCARD: {keys[-1]}")
                 keys.pop(-1)
@@ -38,7 +39,7 @@ class LIFOCache(BaseCaching):
             self.cache_data[key] = item
 
     def get(self, key: str) -> Any:
-        """ get item by key
+        """get item by key
 
         Args:
             key (str): item key
