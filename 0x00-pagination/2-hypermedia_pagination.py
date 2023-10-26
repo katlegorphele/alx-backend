@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 '''
 Implementing get_hyper method that takes the same arguments (and defaults)
