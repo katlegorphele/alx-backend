@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-'''
+"""
 Function that takes two integer arguments page and page_size
 and returns a tuple containing the start index and end index
-'''
+"""
+
 
 def index_range(page: int, page_size: int) -> tuple:
     """
