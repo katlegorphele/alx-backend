@@ -1,25 +1,27 @@
-//Node Redis client and advanced operations
-import * as redis from 'redis';
+//Use hset to store data
 
-const client = redis.createClient();
+import { createClient } from 'redis';
+import redis from 'redis';
 
-client.on('error', (error) => {
-  console.log(`Redis client not connected to the server: ${error.message}`);
-});
+const client = createClient();
 
 client.on('connect', () => {
-  console.log('Redis client connected to the server');
+    console.log('Redis client connected to the server')
 });
 
-const KEY = 'HolbertonSchools';
-
-const keys = ['Portland', 'Seattle', 'New York', 'Bogota', 'Cali', 'Paris'];
-const values = [50, 80, 20, 20, 40, 2];
-
-keys.forEach((key, index) => {
-  client.hset(KEY, key, values[index], redis.print);
+client.on('error', (err) => {
+    console.log(`Something went wrong ${err}`)
 });
 
-client.hgetall(KEY, (err, value) => {
-  console.log(value);
+const hash = 'HolbertonSchools';
+
+client.hset(hash, 'Portland', 50, redis.print);
+client.hset(hash, 'Seattle', 80, redis.print);
+client.hset(hash, 'New York', 20, redis.print);
+client.hset(hash, 'Bogota', 20, redis.print);
+client.hset(hash, 'Cali', 40, redis.print);
+client.hset(hash, 'Paris', 2, redis.print);
+
+client.hgetall(hash, (err, res) => {
+    console.log(res);
 });
