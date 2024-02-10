@@ -1,32 +1,27 @@
-// Node Redis Client and basic operations
-import * as redis from 'redis';
+import { createClient } from 'redis';
 
-const client = redis.createClient();
+const client = createClient();
 
-// Event handler for successful connection
 client.on('connect', () => {
-  console.log('Redis client connected to the server');
+	console.log('Redis client connected')
 });
 
-// Event handler for connection errors
 client.on('error', (err) => {
-  console.log(`Redis client not connected to the server: ${err.message}`);
+	console.log(`Something went wrong ${err}`)
 });
 
-// Function to set a new school value in Redis
-function setNewSchool(schoolName, value) {
-    client.set(schoolName, value, redis.print);
-  }
-  
-  // Function to display the value for a given school key
-  function displaySchoolValue(schoolName) {
-    client.get(schoolName, (err, res) => {
-      console.log(res);
+const setNewSchool = (schoolName, value) => {
+    client.set(schoolName, value, (err, reply) => {
+        console.log(reply);
     });
-  }
-  
-  // Call the functions
-  displaySchoolValue('Holberton');
-  setNewSchool('HolbertonSanFrancisco', '100');
-  displaySchoolValue('HolbertonSanFrancisco');
-  
+}
+
+const displaySchoolValue = (schoolName) => {
+    client.get(schoolName, (err, reply) => {
+        console.log(reply);
+    });
+}
+
+displaySchoolValue('Holberton');
+setNewSchool('HolbertonSanFrancisco', '100');
+displaySchoolValue('HolbertonSanFrancisco');
